@@ -5,7 +5,7 @@ metadata:
   name: aws-rds-posgresql
 spec:
   ignoreCrossplaneConstraints: false
-  package: driosalido/aws-rds-postresql:v1.0.0
+  package: driosalido/aws-rds-postresql:v1.0.1
   packagePullPolicy: IfNotPresent
   revisionActivationPolicy: Automatic
   revisionHistoryLimit: 0

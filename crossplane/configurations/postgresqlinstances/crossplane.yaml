@@ -7,7 +7,7 @@ metadata:
     vpc: default
 spec:
   crossplane:
-    version: ">=v1.18.0-0"
+    version: ">=v1.14.0-0"
   dependsOn:
     - provider: crossplane/provider-aws
       version: ">=v0.18.2"
