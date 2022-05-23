@@ -99,3 +99,12 @@ Remove the secret with the admin password as is not longer needed
 kubectl delete secret -n argocd argocd-initial-admin-secret
 secret "argocd-initial-admin-secret" deleted
 ```
+
+## Deploy shared apps
+
+```
+argocd app create shared-app --repo https://github.com/driosalido/crossplane-demo.git \
+  --path config/shared \
+  --dest-namespace default \
+  --dest-server https://kubernetes.default.svc
+```
