@@ -12,7 +12,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/driosalido/crossplane-demo
-    path: config/shared/crossplane-configurations
+    path: argocd/crossplane-configurations
     targetRevision: HEAD
   syncPolicy:
     automated:
