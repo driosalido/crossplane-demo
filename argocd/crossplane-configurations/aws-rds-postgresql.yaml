@@ -4,7 +4,7 @@ metadata:
   name: driosalido-getting-started-with-aws
 spec:
   ignoreCrossplaneConstraints: false
-  package: driosalido/postgresql-rds-aws:v0.1.0
+  package: driosalido/getting-started-with-aws:v1.8.0
   packagePullPolicy: IfNotPresent
   revisionActivationPolicy: Automatic
   revisionHistoryLimit: 0
