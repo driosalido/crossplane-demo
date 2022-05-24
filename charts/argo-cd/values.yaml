@@ -1,9 +1,7 @@
 argo-cd:
-  dex:
-    enabled: false
+#  dex:
+#    enabled: false
   server:
-    extraArgs:
-      - --insecure
     config:
       repositories: |
         - type: helm
