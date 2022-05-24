@@ -105,4 +105,7 @@ kubectl delete secret -n argocd -l owner=helm,name=argo-cd
 
 CROSSPLANE
 
+
+helm install crossplane --create-namespace --namespace crossplane-system crossplane-stable/crossplane
+
 kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./aws-creds.conf
