@@ -31,35 +31,25 @@ ingress-nginx-admission-patch-pg7s2         0/1     Completed   0          35s
 ingress-nginx-controller-7785c7547c-dz5sn   1/1     Running     0          35s
 ```
 
-## Deploy ArgoCD
+## Install ArgoCD
 
-Deploy ArgoCD
-```sh
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+Generate Chart
+
+```sh 
+helm dep update charts/argo-cd/
+git add charts/argo-cd
+git commit -m 'add argo-cd chart'
+git push
 ```
 
-Wait until argocd is fully deployed
+Install ArgoCD
 ```sh
-kubectl get pods -n argocd
-NAME                                                READY   STATUS    RESTARTS   AGE
-argocd-application-controller-0                     1/1     Running   0          71s
-argocd-applicationset-controller-7796bb8958-pcs68   1/1     Running   0          71s
-argocd-dex-server-77dcfd899c-ggfq2                  1/1     Running   0          71s
-argocd-notifications-controller-d89bc56c-ngwsj      1/1     Running   0          71s
-argocd-redis-86df6b8979-krd66                       1/1     Running   0          71s
-argocd-repo-server-8457cf44dc-rf5lx                 1/1     Running   0          71s
-argocd-server-57d47d5885-lrdlw                      1/1     Running   0          71s
-```
-
-Install the ArgoCD Command Line
-```sh
-brew install argocd
+helm install --create-namespace --namespace argocd argo-cd charts/argo-cd/ 
 ```
 
 Expose the ArgoCD API Server using ngix-ingress
 ```sh
-kubectl apply -n argocd -f ./argocd/ingress.yaml
+kubectl apply -n argocd -f ./bootstrap/ingress.yaml
 ```
 
 And add the following line to your `/etc/hosts` file
@@ -70,8 +60,7 @@ And add the following line to your `/etc/hosts` file
 
 Get the argocd admin password from the k8s secret
 ```sh
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
-XXXXXXXX
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" -n argocd | base64 -d; echo
 ```
 
 Change the Admin password 
@@ -100,11 +89,15 @@ kubectl delete secret -n argocd argocd-initial-admin-secret
 secret "argocd-initial-admin-secret" deleted
 ```
 
-## Deploy shared apps
+We can then visit https://argocd.local to access it.
 
+
+Deploy root app
 ```
-argocd app create shared-app --repo https://github.com/driosalido/crossplane-demo.git \
-  --path config/shared \
-  --dest-namespace default \
-  --dest-server https://kubernetes.default.svc
+helm template apps/ | kubectl apply -n argocd -f -
+```
+
+Remove helm deployment state
+```sh 
+kubectl delete secret -n argocd -l owner=helm,name=argo-cd
 ```
