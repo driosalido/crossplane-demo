@@ -1,7 +1,7 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Configuration
 metadata:
-  name: aws-rds-posgresql
+  name: driosalido-getting-started-with-aws
 spec:
   ignoreCrossplaneConstraints: false
   package: driosalido/postgresql-rds-aws:v0.1.0
