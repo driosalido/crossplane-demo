@@ -1,0 +1,35 @@
+apiVersion: database.example.org/v1alpha1
+kind: PostgreSQLInstance
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"database.example.org/v1alpha1","kind":"PostgreSQLInstance","metadata":{"annotations":{},"name":"my-db","namespace":"default"},"spec":{"compositionSelector":{"matchLabels":{"provider":"aws"}},"parameters":{"storageGB":20},"writeConnectionSecretToRef":{"name":"db-conn"}}}
+  creationTimestamp: "2022-05-24T14:18:45Z"
+  finalizers:
+  - finalizer.apiextensions.crossplane.io
+  generation: 3
+  name: my-db
+  namespace: default
+  resourceVersion: "12359"
+  uid: 73529e37-d225-4fd2-9734-8e61639cfb7e
+spec:
+  compositionRef:
+    name: xpostgresqlinstances.aws.database.example.org
+  compositionSelector:
+    matchLabels:
+      provider: aws
+  compositionUpdatePolicy: Automatic
+  parameters:
+    storageGB: 20
+  resourceRef:
+    apiVersion: database.example.org/v1alpha1
+    kind: XPostgreSQLInstance
+    name: my-db-94nxg
+  writeConnectionSecretToRef:
+    name: db-conn
+status:
+  conditions:
+  - lastTransitionTime: "2022-05-24T14:18:45Z"
+    reason: Composite resource claim is waiting for composite resource to become Ready
+    status: "False"
+    type: Ready

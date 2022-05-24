@@ -109,3 +109,10 @@ CROSSPLANE
 helm install crossplane --create-namespace --namespace crossplane-system crossplane-stable/crossplane
 
 kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./aws-creds.conf
+
+
+
+
+
+❯ kubectl crossplane install configuration driosalido/getting-started-with-aws:v1.8.0
+
