@@ -7,13 +7,13 @@ We are going to use kind to deploy a local k8s cluster with cert-managaer a ngin
 Install Kind
 
 ```sh 
-kind create cluster --config=./kind/kind.yaml --name control-plane
+kind create cluster --config=bootstrap/kind.yaml --name control-plane
 ```
 
 Install Cert-Manager and cert-issuer resource
 ```sh 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.8.0/cert-manager.yaml
-kubectl apply -f ./kind/cert-issuer.yaml
+kubectl apply -f ./bootstrap/cert-issuer.yaml
 ```
 
 Deploy Ingress Controller

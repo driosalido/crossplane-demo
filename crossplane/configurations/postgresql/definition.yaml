@@ -32,12 +32,7 @@ spec:
                 properties:
                   storageGB:
                     type: integer
-                  region:
-                    description: Geographic location of this VPC
-                    type: string
-                    enum: ["eu-west-1", "us-east-1"]   
                 required:
                   - storageGB
-                  - region
             required:
               - parameters
