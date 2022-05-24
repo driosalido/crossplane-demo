@@ -1,14 +1,23 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prometheus
+spec:
+  finalizers:
+  - kubernetes 
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus
-  namespace: default
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: prometheus
   project: default
   source:
     chart: prometheus
