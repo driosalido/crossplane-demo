@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-server-ingress
-  namespace: argocd
+  name: prometheus-server-ingress
+  namespace: prometheus
   annotations:
     cert-manager.io/cluster-issuer: test-selfsigned
     kubernetes.io/ingress.class: nginx
@@ -11,16 +11,16 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
-  - host: argocd.local
+  - host: prometheus.local
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service: 
-            name: argocd-server
+            name: prometheus-server
             port:
-              name: https
+              name: http
   tls:
   - hosts:
     - argocd.local

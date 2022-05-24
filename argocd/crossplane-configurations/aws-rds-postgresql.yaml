@@ -1,22 +1,10 @@
-apiVersion: aws.crossplane.io/v1beta1
-kind: ProviderConfig
-metadata:
-  name: default
-spec:
-  credentials:
-    source: Secret
-    secretRef:
-      namespace: crossplane-system
-      name: aws-creds
-      key: creds
----
 apiVersion: pkg.crossplane.io/v1
 kind: Configuration
 metadata:
   name: aws-rds-posgresql
 spec:
   ignoreCrossplaneConstraints: false
-  package: driosalido/postgresql-rds-aws:v0.0.1
+  package: driosalido/postgresql-rds-aws:v0.1.0
   packagePullPolicy: IfNotPresent
   revisionActivationPolicy: Automatic
   revisionHistoryLimit: 0

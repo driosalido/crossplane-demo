@@ -101,3 +101,8 @@ Remove helm deployment state
 ```sh 
 kubectl delete secret -n argocd -l owner=helm,name=argo-cd
 ```
+
+
+CROSSPLANE
+
+kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./aws-creds.conf

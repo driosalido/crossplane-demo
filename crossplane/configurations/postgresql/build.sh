@@ -1,8 +1,6 @@
 #!/bin/bash
-VERSION="v0.0.1"
+VERSION="v0.1.0"
 rm *.xpkg
 docker login
 kubectl crossplane build configuration
 kubectl crossplane push configuration driosalido/postgresql-rds-aws:${VERSION}
-sleep 3
-kubectl crossplane install configuration driosalido/postgresql-rds-aws:${VERSION}
