@@ -4,7 +4,7 @@ metadata:
   name: example-app
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "150"
+    #argocd.argoproj.io/sync-wave: "150"
 spec:
   destination:
     namespace: default
